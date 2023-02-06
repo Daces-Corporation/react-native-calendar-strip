@@ -114,7 +114,7 @@ interface CalendarStripProps {
   calendarHeaderContainerStyle?: StyleProp<ViewStyle>;
   calendarHeaderStyle?: StyleProp<TextStyle>;
   calendarHeaderFormat?: string;
-  calendarHeaderPosition?: "below" | "above";
+  calendarHeaderPosition?: "below" | "above" | "none";
 
   calendarAnimation?: {
     duration: number;
