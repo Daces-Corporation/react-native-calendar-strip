@@ -201,7 +201,7 @@ class CalendarDay extends Component {
 
   calcSizes = (props) => {
     return {
-      containerWidth: Math.round(props.width * 0.9),
+      containerWidth: Math.round(props.width * 0.7),
       // containerHeight: Math.round(props.height),
       // containerBorderRadius: Math.round(props.width / 2),
       dateNameFontSize: Math.round(props.width / 5),
@@ -539,13 +539,17 @@ class CalendarDay extends Component {
             end={{ x: 0.6, y: 0.6 }}
             colors={
               selected && !this.props?.isWeeKView
-                ? ["#ECEDCD", "#568E96"]
-                : ["#E7EBFB", "#E7EBFB"]
+                ? ["#ffffff", "#ffffff"]
+                : ["rgba(255 ,255, 255, 0.3)", "rgba(255 ,255, 255, 0.3)"]
             }
           >
             {showDayName && (
               <Text
-                style={[{ fontSize: dateNameFontSize }, _dateNameStyle]}
+                style={[
+                  { fontSize: dateNameFontSize },
+                  _dateNameStyle,
+                  selected ? { color: "#242426" } : { color: "white" },
+                ]}
                 allowFontScaling={allowDayTextScaling}
                 numberOfLines={1}
               >
@@ -555,7 +559,11 @@ class CalendarDay extends Component {
             {showDayNumber && (
               <View style={_dateNumberContainerStyle}>
                 <Text
-                  style={[{ fontSize: dateNumberFontSize }, _dateNumberStyle]}
+                  style={[
+                    { fontSize: dateNumberFontSize },
+                    _dateNumberStyle,
+                    selected ? { color: "#242426" } : { color: "white" },
+                  ]}
                   allowFontScaling={allowDayTextScaling}
                 >
                   {date.date()}
