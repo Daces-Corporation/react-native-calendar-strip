@@ -69,7 +69,7 @@ class CalendarStrip extends Component {
     calendarHeaderContainerStyle: PropTypes.any,
     calendarHeaderStyle: PropTypes.any,
     calendarHeaderFormat: PropTypes.string,
-    calendarHeaderPosition: PropTypes.oneOf(["above", "below"]),
+    calendarHeaderPosition: PropTypes.oneOf(["above", "below", "none"]),
 
     calendarAnimation: PropTypes.object,
     daySelectionAnimation: PropTypes.object,
@@ -637,9 +637,37 @@ class CalendarStrip extends Component {
 
           <View style={[styles.datesStrip, this.props.datesStripStyle]}>
             <View onLayout={this.onLayout} style={styles.calendarDates}>
+              {this.props.calendarHeaderPosition === "none" && (
+                <WeekSelector
+                  controlDate={this.props.minDate}
+                  iconComponent={this.props.leftSelector}
+                  iconContainerStyle={this.props.iconContainer}
+                  iconInstanceStyle={this.props.iconLeftStyle}
+                  iconStyle={this.props.iconStyle}
+                  imageSource={this.props.iconLeft}
+                  onPress={this.getPreviousWeek}
+                  weekStartDate={this.state.weekStartDate}
+                  weekEndDate={this.state.weekEndDate}
+                  size={this.state.selectorSize}
+                />
+              )}
               {this.props.showDate
                 ? this.renderWeekView(this.state.days)
                 : this.renderHeader()}
+              {this.props.calendarHeaderPosition === "none" && (
+                <WeekSelector
+                  controlDate={this.props.maxDate}
+                  iconComponent={this.props.rightSelector}
+                  iconContainerStyle={this.props.iconContainer}
+                  iconInstanceStyle={this.props.iconRightStyle}
+                  iconStyle={this.props.iconStyle}
+                  imageSource={this.props.iconRight}
+                  onPress={this.getNextWeek}
+                  weekStartDate={this.state.weekStartDate}
+                  weekEndDate={this.state.weekEndDate}
+                  size={this.state.selectorSize}
+                />
+              )}
             </View>
           </View>
 
